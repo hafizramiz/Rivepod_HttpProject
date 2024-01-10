@@ -34,14 +34,14 @@ class _HomeViewState extends ConsumerState<HomeView> {
     });
 
     ref.listen(homeProvider, (previous, next) {
-      if(next.error==null&& next.userList==null){
+      if(next.error==null&& next.postResponse==null){
         Center(child: CircularProgressIndicator());
       }else if(
-      next.error!=null&& next.userList==null
+      next.error!=null&& next.postResponse==null
       ){
         ErrorDialog.show(context, "${next.error}");
       }
-      print("state: ${next.userList}");
+      print("state: ${next.postResponse}");
     });
 
     return Scaffold(
@@ -55,9 +55,9 @@ class _HomeViewState extends ConsumerState<HomeView> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Expanded(
-            child: ref.watch(homeProvider).userList!=null?
+            child: ref.watch(homeProvider).postResponse!=null?
       ListView.builder(
-                itemCount: ref.watch(homeProvider).userList!.length,
+                itemCount: ref.watch(homeProvider).postResponse?.userList!.length!,
                 itemBuilder: (BuildContext context, int index) {
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -65,7 +65,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                       children: [
                         CachedNetworkImage(
                           imageUrl:
-                          ref.watch(homeProvider).userList![index].avatar!,
+                          ref.watch(homeProvider).postResponse!.userList![index].avatar!,
                           imageBuilder: (context, imageProvider) => Container(
                             height: 80,
                             width: 80,
@@ -90,7 +90,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "${ref.watch(homeProvider).userList![index].first_name}",
+                                "${ref.watch(homeProvider).postResponse!.userList?[index].firstName!}",
                                 style: Theme.of(context)
                                     .textTheme
                                     .headlineSmall
@@ -99,14 +99,14 @@ class _HomeViewState extends ConsumerState<HomeView> {
                                     fontWeight: FontWeight.bold),
                               ),
                               Text(
-                                "${ref.watch(homeProvider).userList![index].last_name}",
+                                "${ref.watch(homeProvider).postResponse!.userList?[index].lastName!}",
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyMedium
                                     ?.copyWith(color: ColorConstants.black),
                               ),
                               Text(
-                                "${ref.watch(homeProvider).userList![index].email}",
+                                "${ref.watch(homeProvider).postResponse!.userList?[index].email!}",
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyMedium
@@ -119,7 +119,8 @@ class _HomeViewState extends ConsumerState<HomeView> {
                     ),
                   );
                 },
-                ):Center(child: Text(" Not Loaded Data"),),
+                ):
+            Center(child: Text(" Not Loaded Data"),),
           ),
         ],
       ),

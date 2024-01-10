@@ -5,6 +5,7 @@ import 'dart:convert';
 
 import '../model/post.dart';
 import '../model/user.dart';
+import '../model/user.dart';
 final apiServiceProvider= Provider<ApiService>((ref) => ApiService());
 
 class ApiService{
@@ -30,18 +31,16 @@ class ApiService{
 
 
 
-  Future<List<User>> getRequest() async {
-    final String _url = "https://reqres.in/api/users/2";
+  Future<PostResponse> getRequest() async {
+    final String _url = "https://reqres.in/api/users?page=2";
     final http.Response response = await http.get(
       Uri.parse(_url),
     );
     if (response.statusCode == 200) {
       Map<String, dynamic> usersData=jsonDecode(response.body) as Map<String, dynamic>;
-      List<Map<String, dynamic>> mapList=usersData["data"];
-     List<User> userList=mapList.map((json) => User.fromJson(json)).toList();
-      return userList;
+      PostResponse postResponse=PostResponse.fromJson(usersData);
+      return postResponse;
     } else {
-      print("hataya dustu");
       throw Exception('Failed to load users');
     }
   }
