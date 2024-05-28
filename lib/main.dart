@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_http/feature/home/async_home.dart';
 import 'package:riverpod_http/product/auth_controller/auth_controller.dart';
 import 'package:riverpod_http/product/init/init_app.dart';
+import 'package:riverpod_http/router/routemanager.dart';
 import 'feature/home/home_view.dart';
 import 'feature/login/login_view.dart';
 // Main changed
@@ -27,8 +28,8 @@ class MyApp extends ConsumerWidget {
       }
     }
 
-    return MaterialApp(
-      home: AsyncHome(),
+    return MaterialApp.router(
+      routerConfig: RouteManager.routes,
     );
   }
 }

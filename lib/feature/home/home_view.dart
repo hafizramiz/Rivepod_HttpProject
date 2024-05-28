@@ -29,7 +29,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
 
     ref.listen(authProvider, (previous, next) {
       if (next.authStatus == AuthStatus.unauthenticated) {
-        Navigator.pop(context);
+
       }
     });
 

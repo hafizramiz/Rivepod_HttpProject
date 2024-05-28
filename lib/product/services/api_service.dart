@@ -18,11 +18,14 @@ class ApiService{
           'Content-Type': 'application/json; charset=UTF-8',
         },
         body: jsonEncode(<String, String>{
+          // burasi   model.toJson 'i temsil ediyor.
           'email': email,
           'password':password
         }),
       );
       if (response.statusCode == 200) {
+
+        // Ama donen ayni model olmayacak.
         return Post.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
       } else {
         throw Exception('Failed to post.');
