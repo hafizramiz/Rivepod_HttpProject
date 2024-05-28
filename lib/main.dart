@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_http/feature/home/async_home.dart';
 import 'package:riverpod_http/product/auth_controller/auth_controller.dart';
 import 'package:riverpod_http/product/init/init_app.dart';
 import 'package:riverpod_http/router/routemanager.dart';
