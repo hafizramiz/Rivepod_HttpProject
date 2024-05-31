@@ -27,8 +27,11 @@ class MyApp extends ConsumerWidget {
       }
     }
 
-    return MaterialApp.router(
-      routerConfig: RouteManager.routes,
+    return MaterialApp(
+      home: _getHome(),
     );
+    // return MaterialApp.router(
+    //   routerConfig: RouteManager.routes,
+    // );
   }
 }
