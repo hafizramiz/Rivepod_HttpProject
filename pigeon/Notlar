@@ -1,0 +1,7 @@
+Pigeon Neden Kullanilir
+Bazen bizden Mobil Uygulamamizda zaten var olan native katmanlara erisip
+onlari kullanmamiz istenebilir. Ornegin bir kredi karti odeme ekraninda
+Peki bunu bizden neden isterler? Cunku native katmanlarin sundugu platform spesifik
+güç kazandirmasidir.Peki Platfrom spesifik güçler nerelerde işimize yarar?
+Flutter = client olur
+Native = host olur.
